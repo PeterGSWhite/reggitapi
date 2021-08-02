@@ -12,7 +12,7 @@ jobs:
 
       # Download and cache dependencies
       - restore_cache:
-        keys: 
+        keys:
         - v1-dependencies-{{ checksum "reggitapi/requirements.txt" }}
         # fallback to using the latest cache if no exact match is found
         - v1-dependencies-
@@ -25,7 +25,8 @@ jobs:
           pip install -r reggitapi/requirements.txt
 
       - save_cache:
-        paths: - ./venv
+        paths:
+          - ./venv
         key: v1-dependencies-{{ checksum "requirements.txt" }}
       
       - run:
@@ -34,7 +35,7 @@ jobs:
           . venv/bin/activate
           cd reggitapi
           python manage.py test
-
+          
       - store_artifacts:
         path: test-reports
         destination: test-reports
