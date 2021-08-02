@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 from .apiviews import PostViewSet, CreateVote, UserCreate, LoginView
 
 router = DefaultRouter()
-router.register('posts', PostViewSet, base_name='posts')
+router.register('posts', PostViewSet, basename='posts')
 
 
 urlpatterns = [
