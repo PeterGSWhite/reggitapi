@@ -23,6 +23,7 @@ jobs:
           python3 -m venv venv
           . venv/bin/activate
           pip install -r reggitapi/requirements.txt
+
       - save_cache:
         paths:
           - ./venv
@@ -34,6 +35,7 @@ jobs:
           . venv/bin/activate
           cd reggitapi
           python manage.py test
+          
       - store_artifacts:
         path: test-reports
         destination: test-reports
