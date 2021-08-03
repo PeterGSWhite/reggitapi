@@ -28,15 +28,3 @@ class TestPost(APITestCase):
         self.assertEqual(response.status_code, 200,
             'Expected Response Code 200, received {0} instead.'
             .format(response.status_code))
-
-    def test_create(self):
-        self.client.login(username="test", password="test")
-        params = {
-            'title': 'title',
-            'body': r'\b(\w+)$',
-            'created_by': 1
-        }
-        response = self.client.post(self.uri, params)
-        self.assertEqual(response.status_code, 201,
-            'Expected Response Code 201, received {0} instead.'
-            .format(response.status_code))
