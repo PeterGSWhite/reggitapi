@@ -8,20 +8,6 @@ class TestPost(APITestCase):
     def setUp(self):
         self.client = APIClient()
         self.uri = '/posts/'
-        self.user = self.setup_user()
-        self.token = Token.objects.create(user=self.user)
-        self.token.save()
-
-
-    @staticmethod
-    def setup_user():
-        User = get_user_model()
-        return User.objects.create_user(
-            'test',
-            email='testuser@test.com',
-            password='test'
-        )
-
 
     def test_list(self):
         response = self.client.get(self.uri)
