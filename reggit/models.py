@@ -4,7 +4,8 @@ from django.db.models.signals import post_save
 
 class Post(models.Model):
     title = models.CharField(max_length=50)
-    body = models.CharField(max_length=500)
+    pattern = models.CharField(max_length=500)
+    test_text = models.CharField(max_length=500000)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now=True)
 
@@ -13,7 +14,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
+    
 class Vote(models.Model):
     user = models.ForeignKey(User, related_name='votes', on_delete=models.CASCADE)
     post = models.ForeignKey(Post, related_name='votes', on_delete=models.CASCADE)

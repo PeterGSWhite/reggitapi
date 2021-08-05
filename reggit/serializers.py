@@ -6,9 +6,12 @@ from .models import Post, Vote
 
 
 class PostSerializer(serializers.ModelSerializer):
+    author = serializers.CharField(source='created_by.username', read_only=True)
+
     class Meta:
         model = Post
         fields = '__all__'
+        extra_kwargs = {'created_by': {'default': serializers.CurrentUserDefault()}}
         
 class VoteSerializer(serializers.ModelSerializer):
     class Meta:

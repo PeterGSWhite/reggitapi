@@ -17,7 +17,7 @@ class LoginView(APIView):
         password = request.data.get("password")
         user = authenticate(username=username, password=password)
         if user:
-            return Response({"token": user.auth_token.key})
+            return Response({"user_id": user.id})
         else:
             return Response({"error": "Wrong Credentials"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -38,28 +38,27 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         post = Post.objects.get(pk=self.kwargs["pk"])
-        if not request.user == post.user:
+        if not request.user == post.created_by:
             raise PermissionDenied("You can not delete this post.")
         return super().destroy(request, *args, **kwargs)
 
     def update(self, request, pk=None):
         post = Post.objects.get(pk=pk)
-        if not request.user == post.user:
+        if not request.user == post.created_by:
             raise PermissionDenied("You can not update this post.")
         return super().update(request, pk=pk)
 
     def partial_update(self, request, pk=None):
         post = Post.objects.get(pk=pk)
-        if not request.user == post.user:
+        if not request.user == post.created_by:
             raise PermissionDenied("You can not update this post.")
         return super().partial_update(request, pk=pk)
 
 
 class CreateVote(APIView):
    def post(self, request, pk):
-        user = request.data.get("user")
         value = request.data.get("value")
-        data = {'post': pk, 'user': user, 'value': value}
+        data = {'post': pk, 'user': request.user.id, 'value': value}
         serializer = VoteSerializer(data=data)
         if serializer.is_valid():
             vote = serializer.save()
