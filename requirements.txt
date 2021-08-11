@@ -4,3 +4,4 @@ django-cors-headers==3.7.0
 djangorestframework-simplejwt==4.7.2
 DateTime==4.3
 django_heroku
+gunicorn
