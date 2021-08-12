@@ -6,3 +6,4 @@ DateTime==4.3
 django_heroku
 gunicorn
 coreapi
+django-rest-swagger
