@@ -27,5 +27,5 @@ urlpatterns = [
     re_path(r'^', include('reggit.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('docs/', include_docs_urls(title='Reggit API')),
+    path('docs/', include_docs_urls(title='Reggit API', permission_classes=[])),
 ]
