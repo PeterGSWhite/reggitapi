@@ -1,5 +1,5 @@
 # reggitapi
-Django Rest Framework API backend to a regex snippet sharing CRUD application
+Django Rest Framework API backend to a regex sharing CRUD application
 
 # Live demo
 https://reggit.herokuapp.com/docs/
