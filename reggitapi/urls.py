@@ -20,15 +20,12 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from rest_framework.schemas import get_schema_view
+from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^', include('reggit.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('docs/', get_schema_view(
-        title="Reggit API",
-        description=""
-    ), name='openapi-schema'),
+    path('docs/', include_docs_urls(title='Reggit API')),
 ]
