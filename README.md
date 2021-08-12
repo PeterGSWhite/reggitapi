@@ -11,5 +11,5 @@ https://reggit.netlify.app/posts
 https://github.com/PeterGSWhite/reggitvue
 
 # Built with  
-Django Rest Framework
-JWT tokens
+*Django Rest Framework  
+*JWT tokens
